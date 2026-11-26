@@ -1,165 +1,279 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: #050816;
+  color: #f8fafc;
+  --page-bg: #050816;
+  --panel-bg: rgba(15, 23, 42, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --button-bg: rgba(255, 255, 255, 0.06);
+  --button-text: #f8fafc;
+  --muted: #94a3b8;
+  --display-bg: rgba(2, 6, 23, 0.62);
+  --utility-bg: rgba(248, 113, 113, 0.14);
+  --utility-text: #fca5a5;
+  --clear-bg: rgba(251, 191, 36, 0.14);
+  --clear-text: #fcd34d;
+  --operator-bg: rgba(99, 102, 241, 0.25);
+  --operator-text: #a5b4fc;
+  --toggle-bg: rgba(15, 23, 42, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #7f7f94;
-  transition: 0.5s;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--page-bg);
+  background-image: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(56, 189, 248, 0.1),
+    transparent 42%
+  );
+  color: #f8fafc;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 body.dark {
-  background-color: #0e0929;
-  transition: 0.5s;
+  color-scheme: light;
+  --page-bg: #eef2ff;
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(15, 23, 42, 0.1);
+  --button-bg: rgba(148, 163, 184, 0.14);
+  --button-text: #1e293b;
+  --muted: #64748b;
+  --display-bg: rgba(241, 245, 249, 0.88);
+  --utility-bg: rgba(248, 113, 113, 0.12);
+  --utility-text: #dc2626;
+  --clear-bg: rgba(251, 191, 36, 0.2);
+  --clear-text: #b45309;
+  --operator-bg: rgba(99, 102, 241, 0.13);
+  --operator-text: #4f46e5;
+  --toggle-bg: rgba(255, 255, 255, 0.8);
+  background-color: var(--page-bg);
+  background-image: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(99, 102, 241, 0.12),
+    transparent 42%
+  );
+  color: #1e293b;
 }
 
 header {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
-
-h1 {
-  color: #ffffff;
-  font-size: 24px;
-  font-family: "Courier New", Courier, monospace;
-  margin: 0 0 10px;
+  width: min(100%, 440px);
+  margin-bottom: 22px;
+  text-align: center;
 }
 
 .title {
-  border: solid rgb(0, 0, 0) 2px;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 20px;
-  text-align: center;
-  box-sizing: border-box;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  padding: 8px 0;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(24px, 5vw, 30px);
+  font-weight: 650;
+  letter-spacing: -0.04em;
 }
 
 main {
   display: flex;
   justify-content: center;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .calculadora {
-  border: solid 3px;
+  width: min(100%, 420px);
+  padding: 20px;
+  border: 1px solid var(--panel-border);
   border-radius: 20px;
-  height: 800px;
-  width: 700px;
-  background-color: gainsboro;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  background: var(--panel-bg);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 .display {
+  min-width: 0;
+  min-height: 112px;
+  margin-bottom: 18px;
+  padding: 16px 18px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
-  font-size: 50px;
-  border: solid grey 10px;
-  height: 120px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(52, 52, 236);
-  margin-inline: 10px;
-  margin-top: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1),
-    0 16px 32px rgba(0, 0, 0, 0.1), 0 32px 64px rgba(0, 0, 0, 0.05);
+  gap: 8px;
   overflow: hidden;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: var(--display-bg);
+  text-align: right;
+  transition: background-color 0.25s ease;
+}
+
+.expression {
+  width: 100%;
+  min-height: 17px;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  color: var(--button-text);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(30px, 9vw, 44px);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  text-overflow: clip;
+  white-space: nowrap;
 }
 
 .buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 10px;
-  border: #cccccc;
-  background: linear-gradient(to bottom, #f4f4f6, #a59e9e);
-  margin-block: 30px;
-  height: 100dvh;
-  border-radius: 10px;
-  margin-inline: 20px;
-  box-shadow: 0 4px 1px #bdbdbd, 3px 0 1px #d3d3d3, 0 -2px 1px #ececec,
-    -2px 0 1px #e4e4e4, 0 2px 1px #fff inset;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
 
-  .button {
-    border: none;
-    padding: 5px 10px;
-    position: relative;
-    border-radius: 20px;
-    margin: auto;
-    width: 100px;
-    height: 90px;
-    background-color: grey;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra externa */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+.button {
+  min-width: 0;
+  height: 62px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 0.16s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
 
-  .button:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Aumenta la sombra en el hover */
-    transform: translateY(-2px); /* Levanta el botón ligeramente */
-    cursor: pointer;
-  }
+.button:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+}
 
-  .button:active {
-    transform: translateY(1px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  }
+.button:active {
+  transform: scale(0.95);
 }
 
 .key {
-  position: relative;
-  border-radius: 10px;
+  display: flex;
   width: 100%;
   height: 100%;
-  background-color: #777575;
-  color: rgb(255, 247, 247);
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 550;
 }
 
-.button:nth-child(16) {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 4;
-  grid-row-end: 6;
-  height: 190px;
+.utility {
+  background: var(--utility-bg);
+  color: var(--utility-text);
 }
 
-.button:nth-child(17) {
-  font-size: 30px;
+.clear {
+  background: var(--clear-bg);
+  color: var(--clear-text);
+}
+
+.operator {
+  background: var(--operator-bg);
+  color: var(--operator-text);
+}
+
+.equals {
+  grid-column: span 4;
+  height: 56px;
+  border: 0;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.25);
+}
+
+.equals:hover {
+  background: linear-gradient(135deg, #7dd3fc, #818cf8);
 }
 
 .display.off {
-  background-color: black;
+  background: #020617;
+}
+
+.display.off .content,
+.display.off .expression {
+  visibility: hidden;
 }
 
 .containerdarkmode {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 #darkmode {
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  background: var(--toggle-bg);
+  color: var(--button-text);
   cursor: pointer;
-  margin-right: 30px;
+  font-size: 16px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-button.darkbutton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 24px;
-  color: #333;
+#darkmode:hover {
+  transform: rotate(-12deg);
 }
 
-#dividido {
-  font-size: 20px;
+@media (max-width: 420px) {
+  body {
+    padding: 68px 14px 28px;
+  }
+
+  .calculadora {
+    padding: 16px;
+  }
+
+  .button {
+    height: 58px;
+  }
+
+  .equals {
+    height: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
