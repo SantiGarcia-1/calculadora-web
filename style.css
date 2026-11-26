@@ -12,8 +12,6 @@
   --display-bg: rgba(2, 6, 23, 0.62);
   --utility-bg: rgba(248, 113, 113, 0.14);
   --utility-text: #fca5a5;
-  --clear-bg: rgba(251, 191, 36, 0.14);
-  --clear-text: #fcd34d;
   --operator-bg: rgba(99, 102, 241, 0.25);
   --operator-text: #a5b4fc;
   --toggle-bg: rgba(15, 23, 42, 0.8);
@@ -51,8 +49,6 @@ body.dark {
   --display-bg: rgba(241, 245, 249, 0.88);
   --utility-bg: rgba(248, 113, 113, 0.12);
   --utility-text: #dc2626;
-  --clear-bg: rgba(251, 191, 36, 0.2);
-  --clear-text: #b45309;
   --operator-bg: rgba(99, 102, 241, 0.13);
   --operator-text: #4f46e5;
   --toggle-bg: rgba(255, 255, 255, 0.8);
@@ -156,9 +152,18 @@ main {
   gap: 10px;
 }
 
-.button {
+.control-row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.button,
+.voice-button {
   min-width: 0;
   height: 62px;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 12px;
   background: var(--button-bg);
@@ -171,14 +176,23 @@ main {
     box-shadow 0.2s ease;
 }
 
-.button:hover {
+.button:hover,
+.voice-button:hover {
   transform: translateY(-2px);
   background-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
 }
 
-.button:active {
+.button:active,
+.voice-button:active {
   transform: scale(0.95);
+}
+
+.button:focus-visible,
+.voice-button:focus-visible,
+#darkmode:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
 }
 
 .key {
@@ -198,8 +212,39 @@ main {
 }
 
 .clear {
-  background: var(--clear-bg);
-  color: var(--clear-text);
+  background: var(--utility-bg);
+  color: var(--utility-text);
+}
+
+.voice-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--operator-bg);
+  color: var(--operator-text);
+}
+
+.voice-button svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.voice-button.escuchando {
+  border-color: rgba(248, 113, 113, 0.55);
+  background: rgba(248, 113, 113, 0.2);
+  color: #fca5a5;
+  animation: mic-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes mic-pulse {
+  50% {
+    box-shadow: 0 0 0 7px rgba(248, 113, 113, 0.08);
+  }
 }
 
 .operator {
@@ -260,7 +305,8 @@ main {
     padding: 16px;
   }
 
-  .button {
+  .button,
+  .voice-button {
     height: 58px;
   }
 
@@ -275,5 +321,9 @@ main {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .voice-button.escuchando {
+    animation: none;
   }
 }
