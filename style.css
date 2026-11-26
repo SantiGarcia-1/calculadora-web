@@ -155,7 +155,7 @@ main {
 .control-row {
   display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -163,6 +163,7 @@ main {
 .voice-button {
   min-width: 0;
   height: 62px;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 12px;
   background: var(--button-bg);

@@ -89,14 +89,6 @@ botonOff.addEventListener('click', apagarDisplay);
 botonOn.addEventListener('click', encenderDisplay);
 
 document.getElementById('ac').addEventListener('click', limpiarDisplay);
-document.getElementById('c').addEventListener('click', function() {
-    if (operacion !== '') {
-        operando2 = '';
-    } else {
-        operando1 = '';
-    }
-    actualizarDisplay('0');
-});
 
 document.addEventListener('keydown', function(event) {
     if (event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
